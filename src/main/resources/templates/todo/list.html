@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo一覧</title>
+</head>
+<body>
+    <h2>Todo一覧</h2>
+    <!-- フラッシュメッセージの表示-->
+    <p th:if="${message}">
+        <p th:text="${message}" style="color: blue;">完了メッセージ</p>
+    <p th:if="${errorMessage}">
+        <p th:text="${errorMessage}" style="color: red;">エラーメッセージ</p>
+    </p>
+    <table border="1" width="300">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ToDo</th>
+                <th>詳細</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.todo}"></td>
+                <td>
+                    <a th:href="@{/todos/{id}(id=${todo.id})}">詳細</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/todos/form}">ToDo登録</a>
+</body>
+</html>
